@@ -1,9 +1,13 @@
 <template name="postItem">
-	<div class="post">
+	<div class="post col-sm-3">
 		<div class="post-content">
 			<h3>{{title}} - ${{price}}</h3>
 			<p>{{description}}</p>
 			 <a href="{{pathFor 'postPage'}}" class="discuss btn btn-default">Go</a>
+			<p>
+        		submitted by {{author}}
+        		{{#if ownPost}}<a href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
+      		</p> 
 		</div>
 	</div>
 </template>

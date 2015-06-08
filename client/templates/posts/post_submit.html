@@ -1,0 +1,50 @@
+<template name="postSubmit">
+  <form class="main form page">
+    <div class="form-group {{errorClass 'title'}}">
+      <label class="control-label" for="title">Title</label>
+      <div class="controls">
+          <input name="title" id="title" type="text" value="" placeholder="Title" class="form-control"/>
+          <span class="help-block">{{errorMessage 'title'}}</span>
+      </div>
+    </div>
+    <div class="form-group {{errorClass 'price'}}">
+      <label class="control-label" for="price">Price</label>
+      <div class="controls">
+          <input name="price" id="price" type="text" value="" placeholder="Price" class="form-control"/>
+          <span class="help-block">{{errorMessage 'price'}}</span>
+      </div>
+    </div>
+    <div class="form-group {{errorClass 'description'}}">
+      <label class="control-label" for="description">Description</label>
+      <div class="controls">
+          <textarea name="description" id="description" type="text" value="" placeholder="Text" class="form-control"> </textarea>
+          <span class="help-block">{{errorMessage 'description'}}</span>
+      </div>
+    </div>
+    {{#c_upload_stream callback="save_url"}}
+        <input type="file" multiple="true">
+    {{/c_upload_stream}}
+
+    {{#each c.uploading_images}}
+        <p>{{percent_uploaded}}</p>
+    {{/each}}
+    {{> cameraEvent}}
+    {{> img}}
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+  </form>
+</template>
+
+<template name="cameraEvent">
+  <button class="btn btn-success"> Take a photo </button>
+</template>
+
+
+<template name="img">
+  <div>
+    {{#if img}}
+      <img src="{{img}}" alt="">
+    {{else}}
+      <p>No image yet.</p>
+    {{/if}}
+  </div>
+</template>

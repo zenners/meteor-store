@@ -1,0 +1,25 @@
+<template name="postEdit">
+  <form class="main form page">
+    <div class="form-group">
+      <label class="control-label" for="title">Title</label>
+      <div class="controls">
+          <input name="title" id="title" type="text" value="{{title}}" placeholder="Title" class="form-control"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="price">Price</label>
+      <div class="controls">
+          <input name="price" id="price" type="text" value="{{price}}" placeholder="Price" class="form-control"/>
+      </div>
+    </div>
+     <div class="form-group">
+      <label class="control-label" for="description">Description</label>
+      <div class="controls">
+          <textarea name="description" id="description" type="text" value="{{description}}" placeholder="Your description" class="form-control"> </textarea>
+      </div>
+      </div>
+    <input type="submit" value="Submit" class="btn btn-primary submit"/>
+    <hr/>
+    <a class="btn btn-danger delete" href="#">Delete post</a>
+  </form>
+</template>
