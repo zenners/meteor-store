@@ -4,10 +4,38 @@
 			<h3>{{title}} - ${{price}}</h3>
 			<p>{{description}}</p>
 			 <a href="{{pathFor 'postPage'}}" class="discuss btn btn-default">Go</a>
+			 {{#if notOwnPost}}
+				 <a href="#" class="watch btn btn-default">Add to watchlist</a>
+				 <a href="#" data-modal="exampleModal" class="msg btn btn-default">Send a message</a>
+				
+			 {{/if}}
 			<p>
         		submitted by {{author}}
         		{{#if ownPost}}<a href="{{pathFor 'postEdit'}}">Edit</a>{{/if}}
       		</p> 
 		</div>
 	</div>
+</template>
+
+
+<template name="exampleModal">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">{{title}}</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>A modal example.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Send</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </template>

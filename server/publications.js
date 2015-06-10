@@ -2,6 +2,11 @@ Meteor.publish('posts', function(){
 	return Posts.find();
 });
 
+
+Meteor.publish("chatrooms",function(){
+    return ChatRooms.find({});
+});
+
 // pub/sub for User collection
 Meteor.publish('userData', function(){
 	if (this.userId){
