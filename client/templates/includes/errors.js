@@ -4,6 +4,7 @@ Template.errors.helpers({
   }
 });
 
+// fade effect for upper right hand err msg
 Template.error.onRendered(function() {
   var error = this.data;
   Meteor.setTimeout(function () {

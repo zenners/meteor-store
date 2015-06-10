@@ -7,7 +7,7 @@ Meteor.publish("chatrooms",function(){
     return ChatRooms.find({});
 });
 
-// pub/sub for User collection
+// pub/sub for User collection, add to fields obj if you want to a field visible on publish
 Meteor.publish('userData', function(){
 	if (this.userId){
 		return Meteor.users.find({_id: this.userId},

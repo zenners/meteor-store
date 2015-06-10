@@ -34,7 +34,7 @@ Template.postSubmit.events({
   }
 });
 
-//picture stuff here
+// WIP picture stuff here
 var getPicture = function(opts){
 	MeteorCamera.getPicture(opts, function(err, data){
 		if (err)

@@ -1,3 +1,4 @@
+// temporary error collection
 Errors = new Mongo.Collection(null);
 
 throwError = function(message){
