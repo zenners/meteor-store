@@ -1,13 +1,40 @@
-Deps.autorun(function(){
-    Meteor.subscribe("chatrooms");
+Template.chatList.helpers({
+  chat: function(){
+    return ChatRooms.find({chatIds: Meteor.userId()})
+  },
+  sender: function(){
+    var chat = ChatRooms.findOne({_id: this._id})
+
+    var senderId = chat.chatIds.filter(function(id){
+      return id != Meteor.userId();
+    });
+    var sender = Meteor.users.findOne(senderId[0]);
+    return sender.username
+  }
 });
 
+Template.chatList.events({
+  'click .chatLink': function(e){
+    e.preventDefault();
+    console.log(this._id)
+    Router.go('chatRoom', {_id: this._id});
+  }
+})
+
+var foo = 0;
 Template.messages.helpers({
-    'msgs':function(){
-        var result = ChatRooms.findOne({_id:Session.get('roomid')});
-        
-        return result.messages;
-    }
+  'msgs':function(){
+      
+      var result = ChatRooms.findOne({_id: this._id});
+      if (result.messages.length > foo) {
+        console.log('new message')
+        foo = result.messages.length;
+        console.log(foo)
+      } else {
+        console.log('no new message')
+      }
+      return result.messages;
+  }
 });
 
 Template.input.events = {
@@ -19,7 +46,7 @@ Template.input.events = {
               var message = document.getElementById('message');
     
               if (message.value !== '') {
-                var de=ChatRooms.update({"_id":Session.get("roomid")},{$push:{messages:{
+                var de=ChatRooms.update({"_id": this._id},{$push:{messages:{
                  name: name,
                  text: message.value,
                  createdAt: Date.now()
@@ -37,40 +64,3 @@ Template.input.events = {
   }
 }
 
-
-// Template.chatSubmit.helpers({
-  // errorMessage: function(field) {
-  //   return Session.get('postSubmitErrors')[field];
-  // },
-  // errorClass: function (field) {
-  //   return !!Session.get('postSubmitErrors')[field] ? 'has-error' : '';
-  // }
-// });
-
-// Template.chatSubmit.events({
-//   'submit form': function(e) {
-//     e.preventDefault();
-
-//     console.log(this)
-
-//     var message = {
-//       productId: this._id,
-//       sellerId: this.userId,
-//       sellerUserName: this.author,	
-//       body: $(e.target).find('[name=message]').val()
-//     };
-
-//     var errors = validateMsg(message);
-//     if (errors.msg)
-//     	console.log(errors);
-
-//     Meteor.call('chatInsert', message, function(error, result) {
-//       // display the error to the user and abort
-//       if (error)
-//          return throwError(error.reason);
-//      else {
-//      	console.log(result)
-//      }
-//     });
-//   }
-// });
