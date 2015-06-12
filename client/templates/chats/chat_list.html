@@ -1,3 +1,7 @@
 <template name="chatList">
-{{list}}
+{{#each list}}
+	<p>{{title}} - Conversation with: {{sender}}</p>
+	<a class="chatLink" href="">go to chat</a>
+	
+{{/each}}
 </template>

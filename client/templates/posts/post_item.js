@@ -14,10 +14,7 @@ Template.postItem.events({
 		e.preventDefault();
 
 		Session.set('currentId',this.userId);
-        var res = ChatRooms.findOne({
-        	chatIds:{
-        		$all:[this.userId,Meteor.userId()]
-        	}
+        var res = ChatRooms.findOne({postId: this._id}, {chatIds:{ $all:[this.userId,Meteor.userId()]}, 
         });
   
         if(res) {
@@ -27,6 +24,7 @@ Template.postItem.events({
             //no room exists (this.user is seller, Meteor.user is buyer)
             var newRoom= ChatRooms.insert({
             	chatIds:[this.userId , Meteor.userId()],
+              postId: this._id,
             	title: this.title,
             	price: this.price,
             	messages:[]

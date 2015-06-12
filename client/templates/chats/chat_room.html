@@ -1,0 +1,19 @@
+<template name="chatRoom">
+   <h1>Chat Part of app</h1>
+ 	<p>{{title}}</p>
+ 	<p>{{price}}</p>
+
+   	{{>messages}}
+
+    {{> input}}
+  
+</template>
+
+<template name="messages">
+  {{#each msgs}}
+    <strong>{{name}}:</strong> {{text}}<br>
+  {{/each}}
+</template>
+
+	
+
