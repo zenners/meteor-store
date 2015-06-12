@@ -1,0 +1,28 @@
+<template name="locations">
+	<h2>Locations</h2>
+	{{> locationField}}
+	{{> map}}
+</template>
+
+<template name="locationField">
+	 <form class="main form page">
+	 	 <div class="form-group">
+      <label class="control-label" for="title">Home</label>
+      <div class="controls">
+          <input name="home-location" id="home-location" type="text" value="" placeholder="Home" class="form-control"/>
+      </div>
+    </div>
+	 	<div class="form-group">
+			<label class="control-label" for="title">Work</label>
+				<div class="controls">
+					<input name="work-location" id="work-location" type="text" value="" placeholder="Work" class="form-control"/>
+				</div>
+    </div>    
+	 </form>
+</template>
+
+<template name="map">
+	<div id="map">
+	</div>
+</template>
+	

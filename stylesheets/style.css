@@ -32,3 +32,8 @@
   margin-bottom: 5px;
   pointer-events: auto;
 }
+
+/** Locations **/
+#map {
+  height: 360px;
+}
