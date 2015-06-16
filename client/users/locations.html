@@ -1,23 +1,40 @@
 <template name="locations">
 	<h2>Locations</h2>
-	{{> locationField}}
+	{{> locationFields}}
 	{{> map}}
 </template>
 
-<template name="locationField">
+<template name="locationFields">
 	 <form class="main form page">
 	 	 <div class="form-group">
       <label class="control-label" for="title">Home</label>
       <div class="controls">
-          <input name="home-location" id="home-location" type="text" value="" placeholder="Home" class="form-control"/>
+          <input name="home-location"
+          			 id="home-location"
+          			 type="text"
+          			 value=""
+          			 placeholder="Home"
+          			 class="form-control typeahead"
+          			 autocomplete="off"
+          			 spellcheck="off"
+          			 data-source="searchHomeLocations"/>
       </div>
     </div>
 	 	<div class="form-group">
 			<label class="control-label" for="title">Work</label>
 				<div class="controls">
-					<input name="work-location" id="work-location" type="text" value="" placeholder="Work" class="form-control"/>
+          <input name="work-location"
+                 id="work-location"
+                 type="text"
+                 value=""
+                 placeholder="Work"
+                 class="form-control typeahead"
+                 autocomplete="off"
+                 spellcheck="off"
+                 data-source="searchWorkLocations"/>          
 				</div>
-    </div>    
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary"/>    
 	 </form>
 </template>
 
