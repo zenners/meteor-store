@@ -4,7 +4,7 @@ Meteor.publish('posts', function(){
 
 // publish chatrooms where the current user is a part of, seller or buyer
 // can we filter array to look at specific index of chatIds to get threads where a user is either buyer or seller?
-Meteor.publish("chatrooms",function(userId){
+Meteor.publish("chatrooms",function(){
     return ChatRooms.find({chatIds: this.userId});
 });
 
@@ -18,7 +18,12 @@ Meteor.publish('userData', function(){
 
 Meteor.publish('otherUsers', function(){
 	return Meteor.users.find({});
-})
+});
+
+Meteor.publish('notifications', function() {
+  return Notifications.find({userId: this.userId});
+});
+
 
 // Cloudinary stuff
 Meteor.methods({

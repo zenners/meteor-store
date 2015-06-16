@@ -26,13 +26,7 @@ Template.messages.helpers({
   'msgs':function(){
       
       var result = ChatRooms.findOne({_id: this._id});
-      if (result.messages.length > foo) {
-        console.log('new message')
-        foo = result.messages.length;
-        console.log(foo)
-      } else {
-        console.log('no new message')
-      }
+    
       return result.messages;
   }
 });
@@ -46,13 +40,18 @@ Template.input.events = {
               var message = document.getElementById('message');
     
               if (message.value !== '') {
-                var de=ChatRooms.update({"_id": this._id},{$push:{messages:{
+                var de = ChatRooms.update({"_id": this._id},{$push:{messages:{
                  name: name,
                  text: message.value,
                  createdAt: Date.now()
                 }}});
+
                 document.getElementById('message').value = '';
                 message.value = '';
+
+                // refactor to return ChatRoom document from de instead of another query
+                var chatpass = ChatRooms.findOne(this._id);
+                createMessageNotification(chatpass);
               }
         }
         else
